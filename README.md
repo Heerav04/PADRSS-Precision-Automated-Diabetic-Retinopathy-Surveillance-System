@@ -17,7 +17,6 @@
 **Welcome!** This project demonstrates my ability to take a complex Machine Learning problem and deploy it as a fully functional, production-ready web application. 
 
 **What this project is:** A Computer Vision application that acts as an automated screening tool for hospitals. It analyzes human retina scans and uses an AI model (ResNet50) to instantly detect the severity of Diabetic Retinopathy, potentially saving doctors hours of manual diagnosis.
-**Live Link: https://padrss-precision-automated-diabetic.onrender.com/.
 **What the Live Demo does:** The [live web link](https://padrss-precision-automated-diabetic.onrender.com) allows anyone to upload a retinal fundus image and receive a real-time AI prediction. 
 * *Want to test it?* You can download sample retina images directly from the [dataset folder here](https://github.com/Heerav04/PADRSS-Precision-Automated-Diabetic-Retinopathy-Surveillance-System/tree/main/dataset/colored_images) and upload them to the live site to see the AI in action!
 
