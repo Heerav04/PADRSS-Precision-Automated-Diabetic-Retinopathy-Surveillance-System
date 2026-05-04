@@ -1,0 +1,11 @@
+matplotlib==3.10.8
+numpy==2.4.2
+pandas==2.3.3
+Pillow==12.1.1
+scikit-learn==1.8.0
+torch==2.10.0
+torchvision==0.25.0
+mysql-connector-python==9.6.0
+python-dotenv==1.0.1
+Flask==3.1.0
+gunicorn==23.0.0

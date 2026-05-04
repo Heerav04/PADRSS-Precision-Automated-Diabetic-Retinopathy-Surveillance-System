@@ -1,0 +1,41 @@
+﻿id	patient_name	predicted_label	confidence	created_at
+40	Anonymous	No DR	88.0392	2026-04-15 13:15:21
+39	Anonymous	Moderate	70.6786	2026-04-15 13:15:11
+38	Anonymous	Moderate	70.6786	2026-04-15 12:03:54
+37	Anonymous	Moderate	70.6786	2026-04-15 12:03:47
+36	Anonymous	Proliferative DR	43.1841	2026-04-15 12:03:13
+35	sdfgthujko	Proliferative DR	100	2026-04-15 11:59:32
+34	sdfgthujko	Mild	100	2026-04-15 11:59:24
+33	sdfgthujko	Proliferative DR	40.5054	2026-04-15 11:53:01
+32	sdfgthujko	No DR	77.5615	2026-04-15 11:52:57
+31	sdfgthujko	Moderate	45.512	2026-04-15 11:52:44
+30	sdfgthujko	Proliferative DR	45.9777	2026-04-15 11:52:27
+29	sdfgthujko	Proliferative DR	45.9777	2026-04-15 11:52:21
+28	sdfgthujko	Mild	55.7232	2026-04-15 11:52:16
+27	Anonymous	No DR	100	2026-04-15 11:51:37
+26	Anonymous	No DR	100	2026-04-15 11:51:32
+25	Anonymous	No DR	73.0284	2026-04-15 11:51:29
+24	Anonymous	Mild	100	2026-04-15 11:51:23
+23	Anonymous	Mild	100	2026-04-15 11:51:17
+22	Anonymous	Mild	100	2026-04-15 11:51:12
+21	Anonymous	Mild	100	2026-04-15 11:50:46
+20	Anonymous	Severe	100	2026-04-15 11:50:39
+19	Anonymous	Severe	100	2026-04-15 11:50:35
+18	Anonymous	Severe	100	2026-04-15 11:50:32
+17	Anonymous	Severe	100	2026-04-15 11:50:29
+16	Anonymous	Mild	100	2026-04-15 11:50:24
+15	Anonymous	Mild	100	2026-04-15 11:50:19
+14	Anonymous	Proliferative DR	100	2026-04-15 11:50:12
+13	Anonymous	Proliferative DR	100	2026-04-15 11:50:07
+12	Anonymous	Severe	39.5429	2026-04-15 11:50:03
+11	Anonymous	Severe	75.6346	2026-04-15 11:49:57
+10	Anonymous	Proliferative DR	100	2026-04-15 11:49:53
+9	Anonymous	No DR	25.2836	2026-04-15 00:10:56
+8	Anonymous	No DR	25.8917	2026-04-15 00:10:48
+7	Anonymous	No DR	23.4072	2026-04-15 00:10:43
+6	Anonymous	No DR	25.2441	2026-04-15 00:10:37
+5	Anonymous	Moderate	23.5227	2026-04-15 00:10:30
+4	Anonymous	Proliferative DR	21.691	2026-04-15 00:10:23
+3	Anonymous	No DR	21.959	2026-04-15 00:10:18
+2	Anonymous	Moderate	21.2763	2026-04-15 00:10:13
+1	Anonymous	Moderate	23.9447	2026-04-15 00:10:06

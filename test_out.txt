@@ -1,0 +1,9 @@
+Class (True Condition) | Total Tested | True Positives | Accuracy
+-----------------------------------------------------------------
+No DR                | 20           | 20             | 100.00%
+Mild                 | 20           | 12             | 60.00%
+Moderate             | 20           | 2              | 10.00%
+Severe               | 20           | 15             | 75.00%
+Proliferative DR     | 20           | 9              | 45.00%
+
+Overall testing finished.
