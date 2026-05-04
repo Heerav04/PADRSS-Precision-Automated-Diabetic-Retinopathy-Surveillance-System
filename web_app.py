@@ -72,6 +72,9 @@ HTML_TEMPLATE = """
             <div class="form-group">
                 <label>Upload Fundus Image (PNG/JPG/JPEG):</label>
                 <input type="file" name="file" required accept="image/png, image/jpeg, image/jpg"/>
+                <p style="font-size: 13px; color: #666; margin-top: 8px;">
+                    <em>Don't have a retina image? <a href="https://github.com/Heerav04/PADRSS-Precision-Automated-Diabetic-Retinopathy-Surveillance-System/tree/main/dataset/colored_images" target="_blank" style="color: #005b96; text-decoration: none; font-weight: bold;">Click here to get sample testing images</a> from our dataset!</em>
+                </p>
             </div>
             <button type="submit">Upload and Analyze</button>
         </form>
