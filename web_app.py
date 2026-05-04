@@ -44,53 +44,263 @@ def save_prediction_db(patient_name, image_path, value, label, confidence):
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Automated Diabetic Retinopathy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Diabetic Retinopathy | AI Diagnostic System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #eef3f8; margin: 0; }
-        .header { background-color: #005b96; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 800px; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input[type="text"], input[type="file"] { width: 100%; padding: 8px; box-sizing: border-box; }
-        button { background-color: #005b96; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; font-size: 16px; }
-        button:hover { background-color: #003f69; }
-        .result { margin-top: 20px; padding: 15px; background: #fbfcfe; border: 1px solid #ddd; }
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: radial-gradient(circle at top left, #1e293b, var(--bg-color)); 
+            color: var(--text-main);
+            margin: 0; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 24px 0;
+            text-align: center;
+            background: rgba(11, 17, 32, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .container { 
+            width: 100%;
+            max-width: 600px; 
+            margin: 50px 20px; 
+            background: var(--card-bg); 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); 
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-group { margin-bottom: 25px; }
+        
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 10px; 
+            font-size: 14px;
+            color: #e2e8f0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"], input[type="file"] { 
+            width: 100%; 
+            padding: 14px 16px; 
+            box-sizing: border-box; 
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: var(--card-border);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        button { 
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), #2563eb); 
+            color: white; 
+            border: none; 
+            padding: 16px 20px; 
+            cursor: pointer; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .sample-link {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .sample-link a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .sample-link a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .result { 
+            margin-top: 30px; 
+            padding: 25px; 
+            background: rgba(15, 23, 42, 0.8); 
+            border-radius: 12px;
+            border-left: 5px solid var(--accent);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .result h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result p {
+            font-size: 16px;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .result strong {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .class-val {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 14px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dynamic Colors for Severity */
+        .severity-0 { border-left-color: #22c55e; } /* Green */
+        .severity-1 { border-left-color: #eab308; } /* Yellow */
+        .severity-2 { border-left-color: #f97316; } /* Orange */
+        .severity-3 { border-left-color: #ef4444; } /* Red */
+        .severity-4 { border-left-color: #b91c1c; } /* Dark Red */
+
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Automated Diabetic Retinopathy Analysis</h1>
+    <div class="navbar">
+        <h1>PADRSS AI</h1>
+        <p>Precision Automated Diabetic Retinopathy Surveillance System</p>
     </div>
+
     <div class="container">
         <form action="/predict" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label>Patient Name:</label>
-                <input type="text" name="patient_name" placeholder="Anonymous" />
+                <label>Patient ID / Name</label>
+                <input type="text" name="patient_name" placeholder="Enter patient identifier..." autocomplete="off"/>
             </div>
             <div class="form-group">
-                <label>Upload Fundus Image (PNG/JPG/JPEG):</label>
+                <label>Retinal Fundus Scan</label>
                 <input type="file" name="file" required accept="image/png, image/jpeg, image/jpg"/>
-                <p style="font-size: 13px; color: #666; margin-top: 8px;">
-                    <em>Don't have a retina image? <a href="https://github.com/Heerav04/PADRSS-Precision-Automated-Diabetic-Retinopathy-Surveillance-System/tree/main/dataset/colored_images" target="_blank" style="color: #005b96; text-decoration: none; font-weight: bold;">Click here to get sample testing images</a> from our dataset!</em>
-                </p>
+                <span class="sample-link">
+                    No scan available? <a href="https://github.com/Heerav04/PADRSS-Precision-Automated-Diabetic-Retinopathy-Surveillance-System/tree/main/dataset/colored_images" target="_blank">Download a test sample</a>.
+                </span>
             </div>
-            <button type="submit">Upload and Analyze</button>
+            <button type="submit">Run Diagnostics</button>
         </form>
         
         {% if prediction %}
-        <div class="result">
-            <h3>Analysis Result:</h3>
+        <div class="result severity-{{ value }}">
+            <h3>Diagnostic Report</h3>
             <p><strong>Patient:</strong> {{ patient }}</p>
-            <p><strong>Prediction:</strong> {{ prediction }} (Class {{ value }})</p>
-            <p><strong>Confidence:</strong> {{ confidence }}%</p>
+            <p><strong>Assessment:</strong> <span class="class-val">{{ prediction }}</span> (Class {{ value }})</p>
+            <p><strong>AI Confidence:</strong> {{ confidence }}%</p>
         </div>
         {% endif %}
         
         {% if error %}
-        <div class="result" style="color: red;">
-            <p><strong>Error:</strong> {{ error }}</p>
+        <div class="result" style="border-left-color: #ef4444;">
+            <p style="color: #fca5a5;"><strong>System Error:</strong> {{ error }}</p>
         </div>
         {% endif %}
     </div>
